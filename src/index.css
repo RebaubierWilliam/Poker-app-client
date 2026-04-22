@@ -474,6 +474,18 @@ textarea:focus {
   margin: 0 -0.25rem;
 }
 
+@media (max-width: 767px) {
+  .modal .table-wrap {
+    height: 42vh;
+    overflow: auto;
+    margin: 0;
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+  }
+}
+
 .section-title {
   margin: 1.25rem 0 0.625rem;
   font-size: 1.0625rem;
