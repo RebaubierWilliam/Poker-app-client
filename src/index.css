@@ -517,7 +517,6 @@ textarea:focus {
 
 .chips-table__total td {
   font-weight: 700;
-  font-size: 1.25rem;
   border-bottom: none;
   border-top: 2px solid var(--border);
   padding-top: 0.875rem;
