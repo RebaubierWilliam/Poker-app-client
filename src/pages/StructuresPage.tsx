@@ -330,7 +330,7 @@ export default function StructuresPage() {
                 <dt>Durée cible</dt>
                 <dd>{viewing.total_duration_minutes} min</dd>
               </div>
-              <div>
+              <div className="structure-summary__stack">
                 <dt>Stack départ</dt>
                 <dd>{viewing.result.starting_stack.toLocaleString()}</dd>
               </div>

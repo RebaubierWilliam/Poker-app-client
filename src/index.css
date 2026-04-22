@@ -423,6 +423,26 @@ textarea:focus {
   font-weight: 600;
 }
 
+.structure-summary__stack {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border);
+  margin-top: 0.25rem;
+}
+
+.structure-summary__stack dt {
+  font-size: 0.8125rem;
+  margin-bottom: 0.25rem;
+}
+
+.structure-summary__stack dd {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1.1;
+}
+
 .levels-table {
   width: 100%;
   border-collapse: collapse;
