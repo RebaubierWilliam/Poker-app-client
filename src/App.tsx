@@ -1,6 +1,7 @@
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
 import MalettesPage from "./pages/MalettesPage";
 import StructuresPage from "./pages/StructuresPage";
+import StructurePlayPage from "./pages/StructurePlayPage";
 
 function NavBar() {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -32,6 +33,10 @@ export default function App() {
           <Route path="/" element={<Navigate to="/malettes" replace />} />
           <Route path="/malettes" element={<MalettesPage />} />
           <Route path="/structures" element={<StructuresPage />} />
+          <Route
+            path="/structures/:id/play"
+            element={<StructurePlayPage />}
+          />
           <Route path="*" element={<Navigate to="/malettes" replace />} />
         </Routes>
       </main>

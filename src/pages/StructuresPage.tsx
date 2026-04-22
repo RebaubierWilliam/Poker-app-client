@@ -31,6 +31,7 @@ function formatDate(s: string): string {
 }
 
 export default function StructuresPage() {
+  const navigate = useNavigate();
   const [items, setItems] = useState<Structure[]>([]);
   const [malettes, setMalettes] = useState<Malette[]>([]);
   const [loading, setLoading] = useState(true);
@@ -198,6 +199,13 @@ export default function StructuresPage() {
                   Modifiée {formatDate(s.updated_at)}
                 </div>
                 <div className="card__actions">
+                  <button
+                    type="button"
+                    className="btn btn--primary"
+                    onClick={() => navigate(`/structures/${s.id}/play`)}
+                  >
+                    ▶ Jouer
+                  </button>
                   <button
                     type="button"
                     className="btn btn--ghost"

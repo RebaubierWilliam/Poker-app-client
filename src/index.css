@@ -558,3 +558,135 @@ textarea:focus {
   padding: 2rem;
   color: var(--fg-muted);
 }
+
+/* ===== Play (tournament timer) ===== */
+
+.play {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+  text-align: center;
+}
+
+.play__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.play__level-label {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.play__counter {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+.play__clock {
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  font-size: clamp(4rem, 22vw, 10rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  padding: 0.5rem 0;
+}
+
+.play__clock--break {
+  color: var(--warning);
+}
+
+.play__progress {
+  height: 8px;
+  background: var(--bg-elev-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.play__progress-bar {
+  height: 100%;
+  background: var(--primary);
+  transition: width 250ms linear;
+}
+
+.play__blinds {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.play__blind {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.25rem;
+  min-width: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.play__blind-label {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.play__blind-value {
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.play__break {
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  font-weight: 800;
+  color: var(--warning);
+  padding: 0.5rem 0;
+}
+
+.play__next {
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.play__slider {
+  width: 100%;
+  min-height: var(--tap);
+  accent-color: var(--primary);
+  background: transparent;
+  padding: 0;
+}
+
+.play__controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.play__controls .btn {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.play__main-btn {
+  flex: 2 1 0;
+  font-size: 1.125rem;
+  min-height: 56px;
+}
+
+.play__controls--secondary {
+  margin-top: -0.25rem;
+}
