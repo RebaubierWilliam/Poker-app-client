@@ -7,7 +7,6 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts index.html ./
-COPY public ./public
 COPY src ./src
 
 ARG VITE_API_BASE_URL=https://poker-blind-timer.fly.dev
