@@ -348,6 +348,33 @@ export default function StructuresPage() {
               </div>
             </dl>
 
+            <h4 className="section-title">Stack de départ par joueur</h4>
+            <div className="table-wrap">
+              <table className="chips-table">
+                <thead>
+                  <tr>
+                    <th>Valeur</th>
+                    <th>Quantité</th>
+                    <th>Sous-total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {viewing.result.chips_per_player.map((c, i) => (
+                    <tr key={i}>
+                      <td>{c.value.toLocaleString()}</td>
+                      <td>{c.count}</td>
+                      <td>{(c.value * c.count).toLocaleString()}</td>
+                    </tr>
+                  ))}
+                  <tr className="chips-table__total">
+                    <td colSpan={2}>Total par joueur</td>
+                    <td>{viewing.result.starting_stack.toLocaleString()}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 className="section-title">Niveaux de blinds</h4>
             <div className="table-wrap">
               <table className="levels-table">
                 <thead>

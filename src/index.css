@@ -451,6 +451,46 @@ textarea:focus {
   margin: 0 -0.25rem;
 }
 
+.section-title {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.chips-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.chips-table th,
+.chips-table td {
+  padding: 0.5rem 0.375rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.chips-table th {
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+.chips-table td:nth-child(2),
+.chips-table th:nth-child(2),
+.chips-table td:nth-child(3),
+.chips-table th:nth-child(3) {
+  text-align: right;
+}
+
+.chips-table__total td {
+  font-weight: 600;
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+}
+
 /* ===== Alerts / empty states ===== */
 
 .alert {
