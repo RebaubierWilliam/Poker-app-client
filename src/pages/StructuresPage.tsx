@@ -12,6 +12,7 @@ import {
   type StructureInput,
 } from "../api";
 import Modal from "../components/Modal";
+import NumberInput from "../components/NumberInput";
 
 interface FormState {
   malette_id: number | "";
@@ -265,34 +266,22 @@ export default function StructuresPage() {
 
           <div className="form-field">
             <label htmlFor="s-players">Nombre de joueurs</label>
-            <input
+            <NumberInput
               id="s-players"
-              type="number"
-              inputMode="numeric"
               min={2}
               value={form.players}
-              onChange={(e) =>
-                setForm((f) => ({
-                  ...f,
-                  players: Number(e.target.value) || 0,
-                }))
-              }
+              onChange={(n) => setForm((f) => ({ ...f, players: n }))}
             />
           </div>
 
           <div className="form-field">
             <label htmlFor="s-duration">Durée totale (minutes)</label>
-            <input
+            <NumberInput
               id="s-duration"
-              type="number"
-              inputMode="numeric"
               min={1}
               value={form.total_duration_minutes}
-              onChange={(e) =>
-                setForm((f) => ({
-                  ...f,
-                  total_duration_minutes: Number(e.target.value) || 0,
-                }))
+              onChange={(n) =>
+                setForm((f) => ({ ...f, total_duration_minutes: n }))
               }
             />
           </div>

@@ -10,6 +10,7 @@ import {
   type MaletteInput,
 } from "../api";
 import Modal from "../components/Modal";
+import NumberInput from "../components/NumberInput";
 
 interface FormState {
   name: string;
@@ -234,30 +235,18 @@ export default function MalettesPage() {
               {form.chips.map((c, i) => (
                 <div key={i} className="chip-row">
                   <div>
-                    <input
-                      type="number"
-                      inputMode="numeric"
+                    <NumberInput
                       min={1}
                       value={c.value}
-                      onChange={(e) =>
-                        updateChip(i, {
-                          value: Number(e.target.value) || 0,
-                        })
-                      }
+                      onChange={(n) => updateChip(i, { value: n })}
                       placeholder="Valeur"
                     />
                   </div>
                   <div>
-                    <input
-                      type="number"
-                      inputMode="numeric"
+                    <NumberInput
                       min={1}
                       value={c.count}
-                      onChange={(e) =>
-                        updateChip(i, {
-                          count: Number(e.target.value) || 0,
-                        })
-                      }
+                      onChange={(n) => updateChip(i, { count: n })}
                       placeholder="Quantité"
                     />
                   </div>
