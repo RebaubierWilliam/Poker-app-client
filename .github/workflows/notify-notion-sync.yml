@@ -1,0 +1,50 @@
+# Gabarit à déployer dans CHAQUE repo suivi (via `just deploy-triggers`).
+#
+# Ne fait rien d'autre que prévenir le repo de sync qu'une issue a bougé. Tout
+# le travail reste centralisé là-bas : ce fichier n'a donc jamais besoin d'être
+# mis à jour, même si la logique de synchro change.
+name: Notifier la sync Notion
+
+on:
+  issues:
+    # Tous les types qui changent une valeur affichée sur le kanban. `edited`
+    # couvre le titre et le corps ; `milestoned`/`demilestoned` le jalon.
+    types:
+      - opened
+      - edited
+      - closed
+      - reopened
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - milestoned
+      - demilestoned
+      - deleted
+      - transferred
+
+# Rien à lire dans ce repo : le job ne fait qu'un appel sortant.
+permissions: {}
+
+# Une rafale d'étiquetages ne doit pas lancer dix synchros. On garde la
+# dernière : la synchro étant un rapprochement complet, seule la plus récente
+# a de la valeur.
+concurrency:
+  group: notify-notion-sync
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Déclencher la sync
+        env:
+          # PAT et non GITHUB_TOKEN : le token par défaut ne peut pas déclencher
+          # un workflow dans un AUTRE repo.
+          GH_TOKEN: ${{ secrets.NOTION_SYNC_DISPATCH_TOKEN }}
+        run: |
+          gh api repos/${{ github.repository_owner }}/notion-github-sync/dispatches \
+            -f event_type=issue-changed \
+            -f 'client_payload[repo]=${{ github.repository }}' \
+            -f 'client_payload[issue]=${{ github.event.issue.number }}'
