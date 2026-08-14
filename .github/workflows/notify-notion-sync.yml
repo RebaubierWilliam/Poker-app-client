@@ -23,6 +23,30 @@ on:
       - deleted
       - transferred
 
+  pull_request:
+    # `synchronize` = nouveaux commits poussés : change le volume et relance la
+    # CI, donc deux colonnes du tableau. `ready_for_review` et
+    # `converted_to_draft` font entrer et sortir de la colonne Brouillon.
+    types:
+      - opened
+      - edited
+      - closed
+      - reopened
+      - synchronize
+      - ready_for_review
+      - converted_to_draft
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - review_requested
+      - review_request_removed
+
+  # Une revue soumise change reviewDecision, donc la colonne : c'est
+  # précisément ce qui fait sortir une PR de « En attente de revue ».
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
 # Rien à lire dans ce repo : le job ne fait qu'un appel sortant.
 permissions: {}
 
@@ -44,7 +68,12 @@ jobs:
           # un workflow dans un AUTRE repo.
           GH_TOKEN: ${{ secrets.NOTION_SYNC_DISPATCH_TOKEN }}
         run: |
+          # `issue` n'existe que sur les événements d'issue, `pull_request` que
+          # sur ceux de PR : on prend celui qui est renseigné. Le payload est
+          # purement informatif — la synchro rapproche tout le compte de toute
+          # façon, elle ne se sert pas de ce numéro.
           gh api repos/${{ github.repository_owner }}/notion-github-sync/dispatches \
             -f event_type=issue-changed \
             -f 'client_payload[repo]=${{ github.repository }}' \
-            -f 'client_payload[issue]=${{ github.event.issue.number }}'
+            -f 'client_payload[event]=${{ github.event_name }}' \
+            -f 'client_payload[number]=${{ github.event.issue.number || github.event.pull_request.number }}'
